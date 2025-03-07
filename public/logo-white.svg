@@ -1,0 +1,6 @@
+<svg width="150" height="40" viewBox="0 0 150 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10 10L20 20L10 30" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M30 10H40V30H30V10Z" fill="white"/>
+  <text x="45" y="25" font-family="Arial" font-size="18" font-weight="bold" fill="white">HomeWiz</text>
+</svg>
+
