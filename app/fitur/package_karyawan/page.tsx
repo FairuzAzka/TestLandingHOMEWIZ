@@ -28,7 +28,7 @@ export default function KaryawanPackagePage() {
                   Download Gratis
                 </Link>
                 <Link
-                  href="#"
+                  href="https://homewiz.suiten.dev/signup"
                   className="px-6 py-2 border border-emerald-500 text-emerald-500 rounded-md hover:bg-emerald-50 text-center"
                 >
                   Coba Demo
@@ -122,7 +122,7 @@ export default function KaryawanPackagePage() {
                   Download Gratis
                 </Link>
                 <Link
-                  href="#"
+                  href="https://homewiz.suiten.dev/signup"
                   className="px-6 py-2 border border-emerald-500 text-emerald-500 rounded-md hover:bg-emerald-50">
                   Coba Demo
                 </Link>
@@ -148,7 +148,7 @@ export default function KaryawanPackagePage() {
                     Download Gratis
                   </Link>
                   <Link
-                    href="#"
+                    href="https://homewiz.suiten.dev/signup"
                     className="px-6 py-2 border border-emerald-500 text-emerald-500 rounded-md hover:bg-emerald-50"
                   >
                     Coba Demo

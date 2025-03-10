@@ -23,7 +23,7 @@ export default function PricingPage() {
               Konsultasi Gratis
             </Link>
             <Link
-              href="\auth\signup"
+              href="https://homewiz.suiten.dev/signup"
               className="px-6 py-2 border border-emerald-500 text-emerald-500 rounded-md hover:bg-emerald-50"
             >
               Coba Gratis
@@ -68,7 +68,7 @@ export default function PricingPage() {
               <button className="w-full px-6 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600">
                 Konsultasi
               </button>
-              <Link href="#" className="block text-center mt-4 text-emerald-500 hover:text-emerald-600">
+              <Link href="https://homewiz.suiten.dev/signup" className="block text-center mt-4 text-emerald-500 hover:text-emerald-600">
                 Coba Gratis
               </Link>
             </div>

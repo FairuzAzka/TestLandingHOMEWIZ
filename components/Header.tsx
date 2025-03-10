@@ -86,13 +86,13 @@ export default function Header() {
       </div>
       <div className="flex items-center space-x-3">
         <div className="hidden md:block">
-          <Link href="/auth/login" className="text-sm font-medium text-gray-600 hover:text-gray-900">
+          <Link href="https://homewiz.suiten.dev/login" className="text-sm font-medium text-gray-600 hover:text-gray-900">
             Sign in
           </Link>
         </div>
         <div className="hidden md:block">
           <Link
-            href="/auth/signup"
+            href="https://homewiz.suiten.dev/signup"
             className="px-4 py-2 text-sm font-medium text-white bg-emerald-500 rounded-md hover:bg-emerald-600"
           >
             Create User
