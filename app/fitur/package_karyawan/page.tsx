@@ -169,25 +169,44 @@ export default function KaryawanPackagePage() {
       </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-16 bg-gray-50">
+      {/* Final CTA Section */}
+      <section className="py-16 bg-gradient-to-b from-white to-emerald-50">
         <div className="container mx-auto max-w-6xl px-4">
-          <h2 className="text-2xl font-bold text-center mb-12">FAQ - Fitur Package</h2>
-          <div className="max-w-3xl mx-auto space-y-4">
-            {[
-              "Bagaimana cara mengetahui apakah paket saya sudah tiba?",
-              "Bagaimana cara mengambil paket saya?",
-              "Apakah saya bisa memeriksa riwayat paket yang pernah saya terima?",
-              "Bagaimana jika saya tidak bisa mengambil paket sendiri?",
-              "Apa yang harus saya lakukan jika paket saya hilang?",
-            ].map((question, index) => (
-              <div key={index} className="border rounded-lg bg-emerald-50 hover:bg-emerald-100">
-                <button className="flex justify-between items-center w-full p-4 text-left">
-                  <span className="font-medium">{question}</span>
-                  <ChevronDown className="h-5 w-5 text-gray-500" />
-                </button>
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            <div className="md:w-1/2">
+              <Image
+                src="/images/HappyFamily.png?"
+                alt="Family Using App"
+                width={600}
+                height={400}
+                className="rounded-lg"
+              />
+            </div>
+            <div className="md:w-1/2">
+              <div className="flex justify-center py-4">
+                <Image
+                  src="/images/logohomewiztanpatulisan.png?"
+                  alt="Family Using App"
+                  width={30}
+                  height={20}
+                />
               </div>
-            ))}
+              <h2 className="text-2xl font-bold mb-4 text-center">Satu Solusi untuk Semua Hunian Anda</h2>
+              <p className="text-gray-600 mb-6 text-center">
+              Kelola dan pantau semua laporan apartemen dalam satu sistem yang terintegrasi dan transparan. Dari permasalahan unit pribadi hingga fasilitas umum, ajukan, lacak, dan selesaikan laporan dengan lebih cepat dan efisien langsung dari aplikasi.
+              </p>
+              <div className="flex gap-3 flex justify-center">
+                <Link href="#" className="px-6 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600">
+                  Download Gratis
+                </Link>
+                <Link
+                  href="https://homewiz.suiten.dev/signup"
+                  className="px-6 py-2 border border-emerald-500 text-emerald-500 rounded-md hover:bg-emerald-50"
+                >
+                  Coba Demo
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -213,26 +213,33 @@ export default function PropertyResidentPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Final CTA Section */}
       <section className="py-16 bg-gradient-to-b from-white to-emerald-50">
         <div className="container mx-auto max-w-6xl px-4">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="md:w-1/2">
               <Image
-                src="/images/HappyFamily.png?height=400&width=500"
-                alt="Happy Family"
-                width={500}
+                src="/images/HappyFamily.png?"
+                alt="Family Using App"
+                width={600}
                 height={400}
                 className="rounded-lg"
               />
             </div>
             <div className="md:w-1/2">
-              <h2 className="text-2xl font-bold mb-4">Satu Solusi untuk Semua Hunian Anda</h2>
-              <p className="text-gray-600 mb-6">
-                Kelola unit properti Anda dengan lebih mudah. Dari informasi fasilitas hingga manajemen penghuni, semua
-                dapat diakses dengan mudah melalui HomeWiz.
+              <div className="flex justify-center py-4">
+                <Image
+                  src="/images/logohomewiztanpatulisan.png?"
+                  alt="Family Using App"
+                  width={30}
+                  height={20}
+                />
+              </div>
+              <h2 className="text-2xl font-bold mb-4 text-center">Satu Solusi untuk Semua Hunian Anda</h2>
+              <p className="text-gray-600 mb-6 text-center">
+              Kelola dan pantau semua laporan apartemen dalam satu sistem yang terintegrasi dan transparan. Dari permasalahan unit pribadi hingga fasilitas umum, ajukan, lacak, dan selesaikan laporan dengan lebih cepat dan efisien langsung dari aplikasi.
               </p>
-              <div className="flex gap-3">
+              <div className="flex gap-3 flex justify-center">
                 <Link href="#" className="px-6 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600">
                   Download Gratis
                 </Link>
