@@ -1,10 +1,47 @@
+"use client"
+
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ChevronDown, Building2, Users, Home, Bell, Calendar, FileText } from "lucide-react"
+import { Users, Home, ChevronDown, ChevronUp, Building2, FileText, Calendar, Bell } from "lucide-react"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 
-export default function BroadcastResidentPage() {
+export default function KaryawanPackagePage() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index)
+  }
+
+  const faqs = [
+    {
+      question: "Siapa yang dapat mengirim broadcast di HomeWiz?",
+      answer:
+        "Hanya pengelola properti dan staf yang memiliki akses untuk mengirim pengumuman ke penghuni.",
+    },
+    {
+      question: "Apa saja jenis informasi yang bisa dikirim melalui fitur Broadcast?",
+      answer:
+        "Pengumuman bisa berupa pemberitahuan perbaikan, informasi pembayaran, keadaan darurat, atau acara komunitas.",
+    },
+    {
+      question: "Apakah penghuni bisa membalas pesan broadcast?",
+      answer:
+        "Tidak, broadcast hanya bersifat satu arah untuk penyebaran informasi.",
+    },
+    {
+      question: "Bagaimana saya tahu jika ada pesan broadcast baru?",
+      answer:
+        "Penghuni akan menerima notifikasi di aplikasi setiap kali ada pesan broadcast baru.",
+    },
+    {
+      question: "Apakah ada batasan jumlah penerima dalam satu broadcast?",
+      answer:
+        "Tidak, broadcast dapat dikirim ke semua penghuni dalam sistem tanpa batasan jumlah penerima.",
+    },
+  ]
+  
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -169,22 +206,26 @@ export default function BroadcastResidentPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16">
-        <div className="container mx-auto max-w-6xl px-4">
-          <h2 className="text-2xl font-bold text-center mb-12">FAQ</h2>
+      <section className="px-4 py-16 md:px-8 bg-gray-50">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-emerald-500 mb-12">FAQ <span className="text-gray-900">- Fitur Broadcast</span></h2>
           <div className="max-w-3xl mx-auto space-y-4">
-            {[
-              "Bagaimana cara melihat pengumuman terbaru?",
-              "Apakah saya akan mendapat notifikasi untuk event?",
-              "Dimana saya bisa melihat jadwal pemeliharaan?",
-              "Bagaimana cara menyimpan pengumuman penting?",
-              "Apakah saya bisa mengatur jenis notifikasi yang diterima?",
-            ].map((question, index) => (
-              <div key={index} className="border rounded-lg bg-white">
-                <button className="flex justify-between items-center w-full p-4 text-left">
-                  <span className="font-medium">{question}</span>
-                  <ChevronDown className="h-5 w-5 text-gray-500" />
+            {faqs.map((faq, index) => (
+              <div key={index} className="rounded-lg bg-emerald-50 shadow-md hover:shadow-lg">
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="flex justify-between items-center w-full p-4 text-left font-medium text-gray-800"
+                >
+                  <span>{faq.question}</span>
+                  {openIndex === index ? (
+                    <ChevronUp className="h-5 w-5 text-emerald-500" />
+                  ) : (
+                    <ChevronDown className="h-5 w-5 text-emerald-500" />
+                  )}
                 </button>
+                {openIndex === index && (
+                  <div className="p-4 text-gray-600 rounded-lg bg-emerald-50 border-gray-100">{faq.answer}</div>
+                )}
               </div>
             ))}
           </div>

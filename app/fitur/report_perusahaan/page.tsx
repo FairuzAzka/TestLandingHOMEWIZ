@@ -1,10 +1,47 @@
+"use client"
+
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Building2, ChevronDown, Home, Users } from "lucide-react"
+import { Building2, ChevronDown, ChevronUp, Home, Users } from "lucide-react"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 
 export default function PerusahaanReportPage() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index)
+  }
+
+  const faqs = [
+    {
+      question: "Bagaimana cara membuat laporan permasalahan di HomeWiz?",
+      answer:
+        "Penghuni dapat mengisi formulir laporan melalui aplikasi, memilih kategori masalah, dan melampirkan foto jika diperlukan. Laporan akan langsung diteruskan ke pengelola properti.",
+    },
+    {
+      question: "Bagaimana saya bisa memantau status laporan saya?",
+      answer:
+        "Setelah laporan diajukan, pengguna dapat melihat statusnya dalam aplikasi, mulai dari Diajukan, Diproses, hingga Selesai.",
+    },
+    {
+      question: "Apakah saya bisa mengedit laporan setelah diajukan?",
+      answer:
+        "Laporan yang sudah dikirim tidak dapat diubah, tetapi pengguna bisa menambahkan komentar atau informasi tambahan dalam detail laporan.",
+    },
+    {
+      question: "Siapa yang akan menangani laporan saya?",
+      answer:
+        "Tim pengelola properti atau teknisi terkait akan menangani laporan sesuai dengan jenis permasalahan yang diajukan.",
+    },
+    {
+      question: "Bagaimana jika laporan saya tidak ditindaklanjuti?",
+      answer:
+        "Jika laporan belum diproses dalam waktu yang lama, pengguna dapat menghubungi pengelola properti melalui fitur komunikasi dalam aplikasi.",
+    },
+  ]
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -213,24 +250,26 @@ export default function PerusahaanReportPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16">
-      <div className="container mx-auto max-w-6xl">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">
-            FAQ - <span className="text-emerald-500">Fitur Report</span>
-        </h2>
+      <section className="px-4 py-16 md:px-8 bg-gray-50">
+        <div className="container mx-auto max-w-6xl">
+        <h2 className="text-2xl md:text-3xl font-bold text-center text-emerald-500 mb-12">FAQ <span className="text-gray-900">- Fitur Report</span></h2>
           <div className="max-w-3xl mx-auto space-y-4">
-            {[
-              "Apa yang bisa saya laporkan melalui Fitur Report?",
-              "Bagaimana cara mengetahui status laporan saya?",
-              "Apakah saya bisa mengedit atau membatalkan laporan setelah dikirm?",
-              "Berapa lama waktu yang dibutuhkan untuk menyelesaikan laporan?",
-              "Bagaimana jika masalah belum terselesaikan setelah laporan dinyatakan selesai?",
-            ].map((question, index) => (
-              <div key={index} className="rounded-lg border bg-emerald-50 hover:bg-emerald-100">
-                <button className="flex justify-between items-center w-full p-4 text-left">
-                  <span className="font-medium">{question}</span>
-                  <ChevronDown className="h-5 w-5 text-gray-500" />
+            {faqs.map((faq, index) => (
+              <div key={index} className="rounded-lg bg-emerald-50 shadow-md hover:shadow-lg">
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="flex justify-between items-center w-full p-4 text-left font-medium text-gray-800"
+                >
+                  <span>{faq.question}</span>
+                  {openIndex === index ? (
+                    <ChevronUp className="h-5 w-5 text-emerald-500" />
+                  ) : (
+                    <ChevronDown className="h-5 w-5 text-emerald-500" />
+                  )}
                 </button>
+                {openIndex === index && (
+                  <div className="p-4 text-gray-600 rounded-lg bg-emerald-50 border-gray-100">{faq.answer}</div>
+                )}
               </div>
             ))}
           </div>

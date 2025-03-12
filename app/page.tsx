@@ -329,7 +329,7 @@ export default function Home() {
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">FAQ</h2>
           <div className="max-w-3xl mx-auto space-y-4">
             {faqs.map((faq, index) => (
-              <div key={index} className="rounded-lg bg-white shadow-md hover:shadow-lg">
+              <div key={index} className="rounded-lg bg-emerald-50 shadow-md hover:shadow-lg">
                 <button
                   onClick={() => toggleFAQ(index)}
                   className="flex justify-between items-center w-full p-4 text-left font-medium text-gray-800"
@@ -342,7 +342,7 @@ export default function Home() {
                   )}
                 </button>
                 {openIndex === index && (
-                  <div className="p-4 text-gray-600 bg-white border-t border-gray-100">{faq.answer}</div>
+                  <div className="p-4 text-gray-600 rounded-lg bg-emerald-50 border-gray-100">{faq.answer}</div>
                 )}
               </div>
             ))}

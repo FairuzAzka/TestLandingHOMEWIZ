@@ -1,10 +1,47 @@
+"use client"
+
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Users, Home, ChevronDown } from "lucide-react"
+import { Users, Home, ChevronDown, ChevronUp } from "lucide-react"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 
 export default function KaryawanPackagePage() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index)
+  }
+
+  const faqs = [
+    {
+      question: "Bagaimana saya tahu jika paket saya telah tiba?",
+      answer:
+        "Penghuni akan menerima notifikasi langsung di aplikasi ketika paket mereka telah diterima oleh staf pengelola.",
+    },
+    {
+      question: "Bagaimana cara mengambil paket saya?",
+      answer:
+        "Penghuni dapat menunjukkan ID paket di aplikasi kepada staf untuk mengambil paket mereka.",
+    },
+    {
+      question: "Apakah saya bisa mengecek riwayat paket saya?",
+      answer:
+        "Ya, semua riwayat penerimaan paket dapat diakses melalui menu Paket di aplikasi.",
+    },
+    {
+      question: "Bagaimana jika paket saya hilang atau salah diserahkan?",
+      answer:
+        "Penghuni dapat mengajukan laporan melalui aplikasi atau menghubungi pengelola properti untuk investigasi lebih lanjut.",
+    },
+    {
+      question: "Apakah fitur paket dapat digunakan oleh semua penghuni?",
+      answer:
+        "Ya, fitur ini tersedia untuk semua penghuni yang terdaftar dalam sistem HomeWiz.",
+    },
+  ]
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -16,7 +53,7 @@ export default function KaryawanPackagePage() {
             <div className="md:w-1/2">
               <h1 className="text-3xl md:text-4xl font-bold mb-4">Paket Tertata, Penghuni Tenang!</h1>
               <p className="text-gray-600 mb-6">
-                Tidak perlu lagi khawatir mencari paket! Homewizz menggunakan fitur Package Management, yang
+                Tidak perlu lagi khawatir mencari paket! HomeWiz menggunakan fitur Package Management, yang
                 memungkinkan penghuni, staff, dan pengelola untuk melacak status paket dengan mudah dan mengambil paket
                 dengan lebih praktis dan transparan.
               </p>
@@ -81,7 +118,7 @@ export default function KaryawanPackagePage() {
         <div className="container mx-auto max-w-6xl px-4 text-center">
           <h2 className="text-2xl font-bold mb-4">Fitur Add Package - Kelola Paket dengan Lebih Mudah & Tertata</h2>
           <p className="text-gray-600 mb-12">
-            Fitur Add Package di Homewizz memungkinkan staff untuk mencatat setiap paket yang diterima secara digital.
+            Fitur Add Package di HomeWiz memungkinkan staff untuk mencatat setiap paket yang diterima secara digital.
             Dengan sistem ini, paket yang masuk akan tercatat dengan rapi, memudahkan proses distribusi dan memastikan
             tidak ada paket yang terlewat.
           </p>
@@ -113,7 +150,7 @@ export default function KaryawanPackagePage() {
             <div className="md:w-1/2">
               <h2 className="text-2xl font-bold mb-4">Pengambilan Paket yang Aman</h2>
               <p className="text-gray-600 mb-6">
-                Fitur Take by Package di Homewizz memastikan keamanan setiap paket yang diterima. Dengan sistem ini,
+                Fitur Take by Package di HomeWiz memastikan keamanan setiap paket yang diterima. Dengan sistem ini,
                 penghuni harus bisa menunjukkan paket mereka dengan nomor resi atau referensi kode yang bisa
                 diverifikasi oleh staff untuk paket yang akan diambil.
               </p>
@@ -139,7 +176,7 @@ export default function KaryawanPackagePage() {
             <div className="md:w-1/2">
               <h2 className="text-2xl font-bold mb-4">Fitur Detail Package dengan Work Track</h2>
                 <p className="text-gray-600 mb-12">
-                  Fitur Detail Package dengan Work Track di Homewizz memungkinkan staff untuk melihat informasi detail paket
+                  Fitur Detail Package dengan Work Track di HomeWiz memungkinkan staff untuk melihat informasi detail paket
                   yang diterima dan memantau status pengambilan. Jika terjadi masalah dengan paket, sistem akan mencatat
                   tracking setiap perubahan status dan memudahkan proses investigasi.
                 </p>
@@ -167,6 +204,33 @@ export default function KaryawanPackagePage() {
           </div>
         </div>
       </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="px-4 py-16 md:px-8 bg-gray-50">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-emerald-500 mb-12">FAQ <span className="text-gray-900">- Fitur Packgage</span></h2>
+          <div className="max-w-3xl mx-auto space-y-4">
+            {faqs.map((faq, index) => (
+              <div key={index} className="rounded-lg bg-emerald-50 shadow-md hover:shadow-lg">
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="flex justify-between items-center w-full p-4 text-left font-medium text-gray-800"
+                >
+                  <span>{faq.question}</span>
+                  {openIndex === index ? (
+                    <ChevronUp className="h-5 w-5 text-emerald-500" />
+                  ) : (
+                    <ChevronDown className="h-5 w-5 text-emerald-500" />
+                  )}
+                </button>
+                {openIndex === index && (
+                  <div className="p-4 text-gray-600 rounded-lg bg-emerald-50 border-gray-100">{faq.answer}</div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* Final CTA Section */}

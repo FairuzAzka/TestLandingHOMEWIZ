@@ -1,10 +1,47 @@
+"use client"
+
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ChevronDown, Building2, Users } from "lucide-react"
+import { Users, Home, ChevronDown, ChevronUp, Building2 } from "lucide-react"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 
-export default function PropertyPerusahaanPage() {
+export default function KaryawanPackagePage() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index)
+  }
+
+  const faqs = [
+    {
+      question: "Apa saja informasi properti yang bisa saya lihat di HomeWiz",
+      answer:
+        "Penghuni dapat melihat informasi unit mereka, termasuk status pembayaran, riwayat laporan, dan fasilitas yang tersedia.",
+    },
+    {
+      question: "Apakah saya bisa mengajukan perubahan data unit saya?",
+      answer:
+        "Ya, penghuni dapat mengajukan perubahan data unit kepada pengelola melalui aplikasi.",
+    },
+    {
+      question: "Bagaimana cara menambahkan penghuni tambahan dalam unit saya?",
+      answer:
+        "Penghuni utama dapat mendaftarkan penghuni tambahan melalui aplikasi dan menunggu persetujuan dari pengelola properti.",
+    },
+    {
+      question: "Bisakah saya melihat data unit properti lain?",
+      answer:
+        "Tidak, setiap pengguna hanya dapat melihat informasi unit mereka sendiri.",
+    },
+    {
+      question: "Bagaimana jika ada kesalahan dalam data unit saya",
+      answer:
+        "Penghuni dapat melaporkan kesalahan data kepada pengelola melalui fitur laporan atau komunikasi di aplikasi",
+    },
+  ]
+  
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -149,7 +186,7 @@ export default function PropertyPerusahaanPage() {
       {/* Testimonials Section */}
       <section className="py-16">
         <div className="container mx-auto max-w-6xl px-4">
-          <h2 className="text-2xl font-bold text-center mb-12">Untuk HomeWizzers, Kemudahan Adalah Segalanya</h2>
+          <h2 className="text-2xl font-bold text-center mb-12">Untuk HomeWizers, Kemudahan Adalah Segalanya</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[1, 2, 3].map((i) => (
               <div key={i} className="p-6 bg-white rounded-lg shadow-sm">
@@ -175,22 +212,26 @@ export default function PropertyPerusahaanPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto max-w-6xl px-4">
-          <h2 className="text-2xl font-bold text-center mb-12">FAQ</h2>
+      <section className="px-4 py-16 md:px-8 bg-gray-50">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-emerald-500 mb-12">FAQ <span className="text-gray-900">- Fitur Property</span></h2>
           <div className="max-w-3xl mx-auto space-y-4">
-            {[
-              "Bagaimana cara mengelola multiple properti?",
-              "Apakah bisa mengatur akses untuk staff berbeda?",
-              "Bagaimana cara memantau utilitas properti?",
-              "Apakah ada fitur untuk mengelola tagihan?",
-              "Bagaimana cara membuat pengumuman ke penghuni?",
-            ].map((question, index) => (
-              <div key={index} className="border rounded-lg bg-emerald-50 hover:bg-emerald-100">
-                <button className="flex justify-between items-center w-full p-4 text-left">
-                  <span className="font-medium">{question}</span>
-                  <ChevronDown className="h-5 w-5 text-gray-500" />
+            {faqs.map((faq, index) => (
+              <div key={index} className="rounded-lg bg-emerald-50 shadow-md hover:shadow-lg">
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="flex justify-between items-center w-full p-4 text-left font-medium text-gray-800"
+                >
+                  <span>{faq.question}</span>
+                  {openIndex === index ? (
+                    <ChevronUp className="h-5 w-5 text-emerald-500" />
+                  ) : (
+                    <ChevronDown className="h-5 w-5 text-emerald-500" />
+                  )}
                 </button>
+                {openIndex === index && (
+                  <div className="p-4 text-gray-600 rounded-lg bg-emerald-50 border-gray-100">{faq.answer}</div>
+                )}
               </div>
             ))}
           </div>

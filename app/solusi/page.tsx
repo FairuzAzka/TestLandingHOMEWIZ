@@ -1,13 +1,46 @@
 "use client"
 
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Check, ChevronDown } from "lucide-react"
-import { useState } from "react"
+import { Users, Home, ChevronDown, ChevronUp, Building2, FileText, Calendar, Bell, Clock, Check } from "lucide-react"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 
-export default function Home() {
+export default function KaryawanPackagePage() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index)
+  }
+  const faqs = [
+    {
+      question: "Bagaimana HomeWiz membantu pengelola properti?",
+      answer:
+        "HomeWiz memberikan solusi digital untuk pengelolaan unit, penghuni, tagihan, permasalahan, dan operasional properti secara terpusat dan efisien.",
+    },
+    {
+      question: "Apa keuntungan menggunakan HomeWiz dibandingkan sistem manual?",
+      answer:
+        "HomeWiz meningkatkan efisiensi, mengurangi beban administrasi, mempercepat proses pembayaran, dan memberikan transparansi dalam pengelolaan properti.",
+    },
+    {
+      question: "Apakah HomeWiz cocok untuk semua jenis properti?",
+      answer:
+        "Ya, HomeWiz dapat digunakan untuk apartemen, perumahan, gedung perkantoran, hingga properti komersial lainnya.",
+    },
+    {
+      question: "Bagaimana cara HomeWiz membantu dalam komunikasi antara penghuni dan pengelola?",
+      answer:
+        "HomeWiz memiliki fitur laporan, broadcast, dan notifikasi yang memudahkan komunikasi dua arah antara penghuni dan pengelola.",
+    },
+    {
+      question: "Bagaimana jika properti saya memiliki kebutuhan khusus yang tidak tersedia di HomeWiz?",
+      answer:
+        "Pengelola properti dapat menghubungi tim HomeWiz untuk menyesuaikan fitur atau melakukan integrasi dengan sistem lain sesuai kebutuhan",
+    },
+  ]
+  
   const [selectedRole, setSelectedRole] = useState<"backoffice" | "staff" | "resident">("backoffice")
 
   const roleContent = {
@@ -151,7 +184,7 @@ export default function Home() {
             Solusi untuk Setiap <span className="text-emerald-500">Peran</span> di Apartemen
           </h2>
           <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
-            HomeWizz dirancang untuk memenuhi kebutuhan pengelola apartemen (back office), staf operasional, dan
+            HomeWiz dirancang untuk memenuhi kebutuhan pengelola apartemen (back office), staf operasional, dan
             penghuni (resident/tenant). Berikut solusi yang ditawarkan untuk masing-masing peran:
           </p>
 
@@ -266,7 +299,7 @@ export default function Home() {
       <section id="solusibisnis"  className="px-4 py-16 md:px-8">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-center mb-12">
-            Kenapa HomeWizz Cocok untuk <span className="text-emerald-500">Skala Bisnis</span> Anda?
+            Kenapa HomeWiz Cocok untuk <span className="text-emerald-500">Skala Bisnis</span> Anda?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 ">
             <div className="p-6 rounded-lg border hover:bg-emerald-50">
@@ -296,24 +329,26 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section className="px-4 py-16 md:px-8">
+      <section className="px-4 py-16 md:px-8 bg-gray-50">
         <div className="container mx-auto max-w-6xl">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">
-            FAQ <span className="text-emerald-500">Solusi</span>
-        </h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-emerald-500 mb-12">FAQ <span className="text-gray-900">- solusi</span></h2>
           <div className="max-w-3xl mx-auto space-y-4">
-            {[
-              "Bagaimana HomeWizz membantu pengelola apartemen dalam mengelola operasional harian?",
-              "Apa manfaat HomeWizz bagi penghuni apartemen?",
-              "Apakah HomeWizz cocok untuk apartemen dengan jumlah unit yang lebih kecil?",
-              "Bagaimana solusi HomeWizz dalam mendukung skala bisnis yang lebih besar seperti grup properti atau developer?",
-              "Bagaimana cara bisnis properti mendapatkan manfaat dari HomeWizz?",
-            ].map((question, index) => (
-              <div key={index} className="rounded-lg border bg-emerald-50 hover:bg-emerald-100">
-                <button className="w-full flex items-center justify-between p-4 text-left">
-                  <span>{question}</span>
-                  <ChevronDown className="w-5 h-5 text-gray-500" />
+            {faqs.map((faq, index) => (
+              <div key={index} className="rounded-lg bg-emerald-50 shadow-md hover:shadow-lg">
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="flex justify-between items-center w-full p-4 text-left font-medium text-gray-800"
+                >
+                  <span>{faq.question}</span>
+                  {openIndex === index ? (
+                    <ChevronUp className="h-5 w-5 text-emerald-500" />
+                  ) : (
+                    <ChevronDown className="h-5 w-5 text-emerald-500" />
+                  )}
                 </button>
+                {openIndex === index && (
+                  <div className="p-4 text-gray-600 rounded-lg bg-emerald-50 border-gray-100">{faq.answer}</div>
+                )}
               </div>
             ))}
           </div>

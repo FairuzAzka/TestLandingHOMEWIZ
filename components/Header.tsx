@@ -11,7 +11,7 @@ export default function Header() {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
 
   return (
-    <nav className="flex items-center justify-between px-4 py-4 md:px-8 border-b relative">
+    <nav className="flex items-center justify-between px-4 py-2 md:px-8 border-b relative">
       <div className="flex items-center">
         <Link href="/">
           <Image src="/images/Logo_homewiz.png" alt="HomeWiz Logo" width={120} height={30} className="mr-8" />

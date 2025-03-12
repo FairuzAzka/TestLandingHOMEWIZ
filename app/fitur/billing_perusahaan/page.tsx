@@ -1,10 +1,46 @@
+"use client"
+
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ChevronDown, Building2, Home, Receipt, FileText, PieChart, CreditCard } from "lucide-react"
+import { Users, Home, ChevronDown, ChevronUp, Building2, FileText, Calendar, Bell, Clock } from "lucide-react"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 
-export default function BillingPerusahaanPage() {
+export default function KaryawanPackagePage() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index)
+  }
+  const faqs = [
+    {
+      question: "Bagaimana cara melihat tagihan saya di HomeWiz?",
+      answer:
+        "Penghuni dapat melihat semua tagihan yang harus dibayarkan langsung di menu Billing pada aplikasi.",
+    },
+    {
+      question: "Metode pembayaran apa saja yang tersedia?",
+      answer:
+        "Pembayaran dapat dilakukan melalui transfer bank, e-wallet, atau virtual account sesuai dengan metode yang disediakan oleh pengelola properti.",
+    },
+    {
+      question: "Apakah saya akan menerima notifikasi saat ada tagihan baru?",
+      answer:
+        "Ya, penghuni akan menerima notifikasi setiap kali ada tagihan baru yang harus dibayarkan.",
+    },
+    {
+      question: "Bagaimana jika saya mengalami kendala saat melakukan pembayaran?",
+      answer:
+        "Jika mengalami kendala, penghuni dapat menghubungi pengelola properti atau bagian administrasi melalui aplikasi.",
+    },
+    {
+      question: "Apakah saya bisa melihat riwayat pembayaran saya?",
+      answer:
+        "Ya, semua riwayat transaksi pembayaran tersedia di dalam aplikasi.",
+    },
+  ]
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -151,7 +187,7 @@ export default function BillingPerusahaanPage() {
       {/* Testimonials Section */}
       <section className="py-16">
         <div className="container mx-auto max-w-6xl px-4">
-          <h2 className="text-2xl font-bold text-center mb-12">Untuk HomeWizzers, Kemudahan Adalah Segalanya</h2>
+          <h2 className="text-2xl font-bold text-center mb-12">Untuk HomeWizers, Kemudahan Adalah Segalanya</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[1, 2, 3].map((i) => (
               <div key={i} className="p-6 bg-white rounded-lg shadow-sm">
@@ -177,22 +213,26 @@ export default function BillingPerusahaanPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto max-w-6xl px-4">
-          <h2 className="text-2xl font-bold text-center mb-12">FAQ</h2>
+      <section className="px-4 py-16 md:px-8 bg-gray-50">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-emerald-500 mb-12">FAQ <span className="text-gray-900">- Fitur Billing</span></h2>
           <div className="max-w-3xl mx-auto space-y-4">
-            {[
-              "Bagaimana cara membuat tagihan baru?",
-              "Apakah bisa mengatur tagihan berulang?",
-              "Bagaimana cara memantau status pembayaran?",
-              "Apakah bisa mengatur reminder otomatis?",
-              "Bagaimana cara mengekspor laporan keuangan?",
-            ].map((question, index) => (
-              <div key={index} className="border rounded-lg bg-emerald-50 hover:bg-emerald-100">
-                <button className="flex justify-between items-center w-full p-4 text-left">
-                  <span className="font-medium">{question}</span>
-                  <ChevronDown className="h-5 w-5 text-gray-500" />
+            {faqs.map((faq, index) => (
+              <div key={index} className="rounded-lg bg-emerald-50 shadow-md hover:shadow-lg">
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="flex justify-between items-center w-full p-4 text-left font-medium text-gray-800"
+                >
+                  <span>{faq.question}</span>
+                  {openIndex === index ? (
+                    <ChevronUp className="h-5 w-5 text-emerald-500" />
+                  ) : (
+                    <ChevronDown className="h-5 w-5 text-emerald-500" />
+                  )}
                 </button>
+                {openIndex === index && (
+                  <div className="p-4 text-gray-600 rounded-lg bg-emerald-50 border-gray-100">{faq.answer}</div>
+                )}
               </div>
             ))}
           </div>

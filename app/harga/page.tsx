@@ -1,11 +1,46 @@
+"use client"
+
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Check, ChevronDown } from "lucide-react"
-import { useState } from "react"
+import { Users, Home, ChevronDown, ChevronUp, Building2, FileText, Calendar, Bell, Clock, Check } from "lucide-react"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 
-export default function PricingPage() {
+export default function KaryawanPackagePage() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index)
+  }
+  const faqs = [
+    {
+      question: "Bagaimana cara berlangganan HomeWiz?",
+      answer:
+        "Pengelola properti dapat memilih paket langganan yang sesuai melalui website atau dengan menghubungi tim HomeWiz.",
+    },
+    {
+      question: "Apakah ada versi gratis dari HomeWiz?",
+      answer:
+        "HomeWiz mungkin menyediakan versi trial atau demo sebelum pengguna memutuskan untuk berlangganan.",
+    },
+    {
+      question: "Bagaimana sistem harga HomeWiz?",
+      answer:
+        "Harga berlangganan didasarkan pada jumlah unit properti yang dikelola dan fitur yang diaktifkan dalam sistem.",
+    },
+    {
+      question: "Apakah ada biaya tambahan untuk fitur tertentu?",
+      answer:
+        "Ya, beberapa fitur tambahan atau integrasi dengan sistem lain mungkin memerlukan biaya tambahan.",
+    },
+    {
+      question: "Apakah harga dapat disesuaikan dengan kebutuhan properti saya?",
+      answer:
+        "Ya, HomeWiz menawarkan paket yang fleksibel sesuai dengan skala dan kebutuhan pengelola properti",
+    },
+  ]
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -14,10 +49,10 @@ export default function PricingPage() {
       <section className="px-4 py-16 md:px-8">
         <div className="container mx-auto max-w-6xl text-center">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            Kelola Properti Tanpa Ribet, Pilih Paket HomeWizz yang Sesuai untuk Anda
+            Kelola Properti Tanpa Ribet, Pilih Paket HomeWiz yang Sesuai untuk Anda
           </h1>
           <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-            Nikmati kemudahan mengelola properti dengan fitur terbaik HomeWizz. Coba gratis, kerja hingga 100 unit tanpa
+            Nikmati kemudahan mengelola properti dengan fitur terbaik HomeWiz. Coba gratis, kerja hingga 100 unit tanpa
             batas, dan dapatkan fleksibilitas penuh dengan paket berbayar.
           </p>
           <div className="flex justify-center gap-4">
@@ -159,20 +194,24 @@ export default function PricingPage() {
       {/* FAQ Section */}
       <section className="px-4 py-16 md:px-8 bg-gray-50">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-2xl font-bold text-center mb-12">FAQ</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">FAQ</h2>
           <div className="max-w-3xl mx-auto space-y-4">
-            {[
-              "Bagaimana cara membuat laporan baru?",
-              "Berapa lama laporan saya akan diproses?",
-              "Apakah saya bisa melacak riwayat laporan saya?",
-              "Apa yang harus saya lakukan jika laporan saya belum diproses?",
-              "Apakah saya bisa memberikan ulasan setelah laporan selesai?",
-            ].map((question, index) => (
-              <div key={index} className="rounded-lg border bg-emerald-50 hover:bg-emerald-100">
-                <button className="flex justify-between items-center w-full p-4 text-left">
-                  <span className="font-medium">{question}</span>
-                  <ChevronDown className="h-5 w-5 text-gray-500" />
+            {faqs.map((faq, index) => (
+              <div key={index} className="rounded-lg bg-emerald-50 shadow-md hover:shadow-lg">
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="flex justify-between items-center w-full p-4 text-left font-medium text-gray-800"
+                >
+                  <span>{faq.question}</span>
+                  {openIndex === index ? (
+                    <ChevronUp className="h-5 w-5 text-emerald-500" />
+                  ) : (
+                    <ChevronDown className="h-5 w-5 text-emerald-500" />
+                  )}
                 </button>
+                {openIndex === index && (
+                  <div className="p-4 text-gray-600 rounded-lg bg-emerald-50 border-gray-100">{faq.answer}</div>
+                )}
               </div>
             ))}
           </div>
